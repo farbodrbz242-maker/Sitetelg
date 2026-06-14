@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot Studio ULTRA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Vazirmatn;
+}
+
+body{
+    background:#050814;
+    color:white;
+}
+
+/* هدر */
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background: radial-gradient(circle at top, #1f4037, #050814);
+    padding:20px;
+}
+
+h1{
+    font-size:65px;
+    color:#00ffd5;
+    text-shadow:0 0 25px #00ffd5;
+}
+
+#typing{
+    font-size:18px;
+    opacity:0.8;
+    margin-top:10px;
+}
+
+.btn{
+    margin-top:25px;
+    padding:14px 35px;
+    background:#00ffd5;
+    color:black;
+    border-radius:30px;
+    font-weight:bold;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+    background:white;
+}
+
+section{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.card{
+    width:260px;
+    margin:15px;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#00ffd5;
+}
+
+.faq{
+    max-width:600px;
+    margin:auto;
+    text-align:right;
+}
+
+.faq-item{
+    background:rgba(255,255,255,0.05);
+    margin:10px 0;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.answer{
+    display:none;
+    margin-top:10px;
+    opacity:0.8;
+}
+
+form{
+    max-width:500px;
+    margin:auto;
+    background:rgba(255,255,255,0.05);
+    padding:25px;
+    border-radius:15px;
+}
+
+input, textarea{
+    width:100%;
+    margin:10px 0;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#00ffd5;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:white;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🤖 Bot Studio ULTRA</h1>
+    <div id="typing"></div>
+
+    <a class="btn" href="#order">سفارش سریع</a>
+</header>
+
+<section>
+    <h2>✨ خدمات</h2>
+
+    <div class="cards">
+        <div class="card">🤖 بات تلگرام حرفه‌ای</div>
+        <div class="card">📱 بات روبیکا اختصاصی</div>
+        <div class="card">⚙️ سورس آماده فروش</div>
+        <div class="card">🔥 پنل مدیریت بات</div>
+    </div>
+</section>
+
+<section>
+    <h2>❓ سوالات متداول</h2>
+
+    <div class="faq">
+        <div class="faq-item" onclick="toggle(this)">
+            ⏱ زمان ساخت بات؟
+            <div class="answer">۱ تا ۴ ساعت (شب‌ها از ساعت ۷ به بعد فعالیت نداریم)</div>
+        </div>
+
+        <div class="faq-item" onclick="toggle(this)">
+            💰 قیمت بات تلگرام؟
+            <div class="answer">۱۵۰ هزار تومان با همه امکانات</div>
+        </div>
+
+        <div class="faq-item" onclick="toggle(this)">
+            🔧 سورس هم میدید؟
+            <div class="answer">بله، سورس کامل و قابل ویرایش</div>
+        </div>
+    </div>
+</section>
+
+<section id="order">
+    <h2>📦 سفارش ساخت بات</h2>
+
+    <form onsubmit="send(event)">
+        <input id="name" placeholder="نام شما" required>
+        <input id="type" placeholder="نوع بات" required>
+        <textarea id="desc" placeholder="توضیحات" required></textarea>
+        <button>ارسال سفارش 🚀</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Bot Studio ULTRA
+</footer>
+
+<script>
+
+let text = "ساخت حرفه‌ای‌ترین بات‌های تلگرام و روبیکا 🚀";
+let i = 0;
+
+function type(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text[i];
+        i++;
+        setTimeout(type, 60);
+    }
+}
+type();
+
+function toggle(el){
+    let ans = el.querySelector(".answer");
+    ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+function send(e){
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let type = document.getElementById("type").value;
+    let desc = document.getElementById("desc").value;
+
+    let now = new Date();
+    let date = now.toLocaleDateString("fa-IR");
+    let time = now.toLocaleTimeString("fa-IR");
+
+    let msg = 
+`📦 سفارش جدید
+
+👤 نام: ${name}
+🤖 نوع: ${type}
+📝 توضیحات: ${desc}
+
+💰 قیمت پایه: ۱۵۰,۰۰۰ تومان
+⏱ زمان ساخت: ۱ تا ۴ ساعت (شب‌ها بعد از ۷ فعالیت نداریم)
+
+📅 تاریخ: ${date}
+⏰ زمان: ${time}`;
+
+    window.open("https://t.me/Farbod1213?text=" + encodeURIComponent(msg));
+}
+
+</script>
+
+</body>
+</html>
